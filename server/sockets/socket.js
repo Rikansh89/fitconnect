@@ -22,6 +22,7 @@ function setupSocket(io) {
 
   io.on('connection', async (socket) => {
     onlineUsers.set(socket.userId, socket.id);
+      socket.emit('online_users', Array.from(onlineUsers.keys()));
     await User.findByIdAndUpdate(socket.userId, { isOnline: true, lastSeen: new Date() });
     io.emit('user_online', { userId: socket.userId });
 
