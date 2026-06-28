@@ -11,7 +11,7 @@ export function useSocket(user) {
   useEffect(() => {
     if (!user?.token) return;
 
-    const socket = io('/', {
+    const socket = io('https://fitconnect-26og.onrender.com', {
       auth: { token: user.token },
       transports: ['websocket', 'polling'],
     });
